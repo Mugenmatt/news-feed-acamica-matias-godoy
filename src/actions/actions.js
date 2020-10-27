@@ -1,16 +1,24 @@
+import axios from 'axios';
 
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-const RESET = "RESET";
+const FETCH_NEWS_REQUEST = "FETCH_NEWS_REQUEST";
+const FETCH_NEWS_SUCCESS = "FETCH_NEWS_SUCCESS";
 
-export const incrementValue = () => ({
-    type: INCREMENT
-})
+export const fetchNewsRequest = () => {
+    return {
+        type: FETCH_NEWS_REQUEST
+    }
+}
 
-export const decrementValue = () => ({
-    type: DECREMENT
-})
+export const fetchNewsSuccess = (news) => {
+    return {
+        type: FETCH_NEWS_SUCCESS,
+        payload: news
+    }
+}
 
-export const resetValue = () => ({
-    type: RESET
-})
+export const fetchNews = () => {
+
+        return (dispatch) => {
+
+        }
+}

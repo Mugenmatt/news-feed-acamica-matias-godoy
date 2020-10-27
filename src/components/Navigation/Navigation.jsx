@@ -25,7 +25,7 @@ export const Navigation = () => {
   
               {/* <Route path="/search" render={} /> */}
   
-              <Route path='/news/category/:seccion' component={Politica} />
+              <Route path='/news/category/Politica' component={Politica} />
   
               <Route path='/news/category/internacional' component={Internacional} />
   

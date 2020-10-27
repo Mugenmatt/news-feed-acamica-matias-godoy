@@ -1,24 +1,23 @@
-export const initialState = {
-    count: 0
+import { fetchNewsRequest, fetchNewsSuccess } from '../actions/actions'
+
+const initialState = {
+    news: []
 }
 
-const counter = (state = initialState, action) => {
+const reducerNews = (state = initialState, action) => {
 
     switch(action.type) {
-        case 'INCREMENT':
-            return {count : state.count + 1};
+        case 'FETCH_NEWS_REQUEST':
+            return {};
 
-        case 'DECREMENT':
-            return {count : state.count - 1};
-
-        case 'RESET':
-            return {count : 0}
+        case 'FETCH_NEWS_SUCCESS':
+            return {};
 
         default:
-            return initialState
+            return state
     }
 
 }
 
-export default counter;
+export default reducerNews;
 

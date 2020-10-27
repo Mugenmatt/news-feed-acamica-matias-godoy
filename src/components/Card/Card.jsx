@@ -1,7 +1,7 @@
 import React from 'react';
 import letterQuantity from '../../utils/letterQuantity'
 
-export const News = (props) => {
+export const Card = (props) => {
     const {img_url, category, title, source_name, url} = props;
     return(
       <div className="news">
