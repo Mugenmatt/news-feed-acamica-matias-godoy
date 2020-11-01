@@ -1,12 +1,12 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 // import {Politica, Internacional, Deportes, Tecnologia, Diseno, Espectaculos} from './components/Pages';
-import {Politica} from '../Pages/Politica'
-import {Internacional} from '../Pages/Internacional'
-import {Deportes} from '../Pages/Deportes'
-import {Tecnologia} from '../Pages/Tecnologia'
-import {Diseno} from '../Pages/Diseno'
-import {Espectaculos} from '../Pages/Espectaculos'
+import Politica from '../Pages/Politica'
+import Internacional from '../Pages/Internacional'
+import Deportes from '../Pages/Deportes'
+import Tecnologia from '../Pages/Tecnologia'
+import Diseno from '../Pages/Diseno'
+import Espectaculos from '../Pages/Espectaculos'
 import Home from '../Home/Home'
 
 export const Navigation = () => {

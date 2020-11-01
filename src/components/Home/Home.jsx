@@ -1,76 +1,74 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Card} from '../Card/Card';
 import {Menu} from '../Menu/Menu'
-import {fetchNews} from '../../actions/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import * as actions from '../../actions/actions'
 
-class Home extends React.Component {
-  
-    state = {
-      news : [],
-      loading : false,
-    }
-  
-    componentDidMount() {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = today.getMonth() + 1;
-      const day = today.getDate()
-      fetch(`https://api.canillitapp.com/latest/${year}-${month}-${day}`)
-      .then(res => {
-          return res.json();
-      })
-      .then(res => {
-          return this.setState({
-              news : res,
-              loading: true
-          })
-      })
-      
-    }
-    
-    render() {
-  
-      const {news, loading} = this.state;
-      const newsObj = news.map((obj) => {
-        return obj.img_url 
-        ? <Card 
-            key={obj.news_id}
-            title={obj.title}
-            img_url={obj.img_url}
-            category={obj.category}
-            source_name={obj.source_name}
-            url={obj.url}
-        />
-        : <Card 
-            key={obj.news_id}
-            title={obj.title}
-            description={obj.description}
-            img_url='https://www.intl-spectrum.com/articles/a1176/ArticleDefault.jpg?x=80x56'
-            category={obj.category}
-            source_name={obj.source_name}
-            url={obj.url}
-          />
-      })
-    
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+
+const Home = (props) => {
+  const classes= useStyles()
+
+  const dispatch = useDispatch()
+
+  // const [news, setNews] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const searcher = useSelector((state) => state)
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(actions.fetchNews())
+      setLoading(true)
+    }, 1000);
+  }, [actions.fetchNews])
+
       return (
         <div>
           <Menu />
           <div className="newsDiv">
-              {
-                !loading 
-                ? <div className="loadingDiv">
-                    <img 
-                      style={{'height':'60vh', 'margin-left':'40%'}} 
-                      className="loadingImg" 
-                      src="https://ak.picdn.net/shutterstock/videos/23800711/thumb/1.jpg" 
-                      alt="Loading news!"/>
-                  </div> 
-                : newsObj.slice(0, 10)
-              }
-            </div>
+            {
+              !loading ? 
+                <Backdrop className={classes.backdrop} open>
+                  <CircularProgress color="inherit" />
+                </Backdrop>
+              : 
+              searcher.news.map( obj => {
+                return obj.img_url ? 
+                  <Card 
+                      key={obj.news_id}
+                      title={obj.title}
+                      img_url={obj.img_url}
+                      category={obj.category}
+                      source_name={obj.source_name}
+                      url={obj.url}
+                  />
+                  : <Card 
+                      key={obj.news_id}
+                      title={obj.title}
+                      description={obj.description}
+                      img_url='https://www.intl-spectrum.com/articles/a1176/ArticleDefault.jpg?x=80x56'
+                      category={obj.category}
+                      source_name={obj.source_name}
+                      url={obj.url}
+                    />
+              }).slice(0, 10)
+          }
+              
+          </div>
+            
         </div>
-      )
-    }
-    }
+    )
+}
 
 export default Home;
