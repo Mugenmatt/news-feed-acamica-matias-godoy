@@ -22,6 +22,7 @@ export const fetchNews = () => {
     const day = today.getDate()
 
     return (dispatch) => {
+        // console.log(dispatch);
         dispatch(fetchNewsRequest());
         fetch(`https://api.canillitapp.com/latest/${year}-${month}-${day}`)
         .then(res => {
@@ -32,4 +33,24 @@ export const fetchNews = () => {
             dispatch(fetchNewsSuccess(news))
         })
     }
+}
+
+// const API_SEARCH_URL = '/search/:palabra';
+
+export const fetchWord = (word) => {
+    const url = `https://api.canillitapp.com/search/${word}`
+    // console.log('Antes del return');
+    return (dispatch) => {
+        dispatch(fetchNewsRequest());
+        fetch(url)
+        .then(res => {
+            return res.json();
+        })
+        .then(res => {
+            // console.log('ESTOY EN LA RESPUESTA');
+            const writtenWord = res;
+            dispatch(fetchNewsSuccess(writtenWord))
+        })
+    }
+
 }

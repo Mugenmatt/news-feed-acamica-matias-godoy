@@ -12,23 +12,25 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
+    color: '#EF476F',
+    backgroundColor: '#42a7ff32',
   },
 }));
 
-const Diseno = (props) => {
+const WordSearch = ({match}) => {
 
   const classes= useStyles()
 
   const dispatch = useDispatch()
 
-  // const [news, setNews] = useState([])
-  const [loading, setLoading] = useState(false)
-
   const searcher = useSelector((state) => state)
 
+  const [loading, setLoading] = useState(false)
+
+  console.log(match.params);
+
   const objNews = searcher.news.map( obj => {
-    if(obj.category === 'Diseño') {
+    if(obj.title.includes() === match.params.word) {
       return <Card 
           key={obj.news_id}
           title={obj.title}
@@ -37,7 +39,7 @@ const Diseno = (props) => {
           source_name={obj.source_name}
           url={obj.url}
       />
-    } else if(obj.category === null || obj.category !== 'Diseño') {
+    } else if(obj.title.includes() === null || obj.title.includes() !== match.params.word) {
       return 
     } else if(!obj.img_url) {
         return <Card 
@@ -51,6 +53,7 @@ const Diseno = (props) => {
         />
     }
   })
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -68,7 +71,7 @@ const Diseno = (props) => {
               <Backdrop className={classes.backdrop} open>
                 <CircularProgress color="inherit" />
               </Backdrop>
-              : maxNews(objNews, 10)
+              : maxNews(objNews,10)
           }
               
           </div>
@@ -77,4 +80,4 @@ const Diseno = (props) => {
     )
 }
 
-export default Diseno
+export default WordSearch

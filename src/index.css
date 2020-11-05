@@ -5,6 +5,11 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+:root {
+  --primary-color: #1a38bd;
+  --secondary-color: #42a7ffc9;
+  --third-color: #EF476F;
+}
 
 body {
   font-size: 16px;
@@ -15,16 +20,16 @@ body {
 
 .containerHeaderUp {
   width: 100%;
-  background-color: violet;
+  background-color: var(--primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 0 0 10px 10px;
-  box-shadow:  0px 10px 20px gray;
+  box-shadow:  0px 10px 20px var(--secondary-color);
 }
 
 .mainTitle {
-  color: white;
+  color: var(--third-color);
   padding: 1.2%;
   margin-left: 8.5%;
 }
@@ -35,10 +40,26 @@ body {
   margin-right: 11%;
 }
 
+.searchBtn {
+  padding: 1em;
+  border-style: none;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--primary-color);
+  margin-right: .4em;
+  font-weight: 900;
+}
+
+.searchBtn:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  cursor: pointer;
+}
+
 .inputSearch {
   padding: 4%;
   border: none;
-  margin-right: 3%;
+  margin-right: .8em;
   border-radius: 5px;
   font-size: 1.1rem;
 }
@@ -63,13 +84,14 @@ body {
 
   font-size: 1.2rem;
   text-decoration: none;
-  color: rgba(238, 130, 238, 0.657);
+  color: var(--primary-color);
 
 }
 
 .activeOption {
-  color: violet;
-  border-bottom: .2rem solid violet;
+  color: var(--primary-color);
+  border-bottom: 0.17rem solid var(--primary-color);
+  font-weight: 900;
 }
 
 /* ------------------------------NEWS------------------------------------- */
@@ -77,7 +99,7 @@ body {
 .news {
   width: 400px;
   height: 500px;
-  box-shadow: 2px 4px 5px;
+  box-shadow: 2px 4px 5px var(--secondary-color);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -92,17 +114,19 @@ body {
 
 .newsTitle {
   margin: 6% 3%;
+  color: var(--primary-color);
 }
 
 .newspaper {
   text-align: center;
   font-size: 2rem;
+  color: var(--third-color);
 }
 
 .infoDiv {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .moreInfo {
@@ -110,27 +134,17 @@ body {
   border: none;
   padding: 3%;
   margin: 3%;
-  background-color: violet;
+  background-color: var(--primary-color);
   color: white;
-  box-shadow: 3px 2px 4px black;
+  box-shadow: 3px 2px 4px var(--secondary-color);
   text-decoration: none;
 }
 
 .moreInfo:hover {
   background-color: white;
-  color: violet;
+  color: var(--primary-color);
   cursor: pointer;
   text-decoration: underline;
-}
-
-/* ------------------------------LOADING------------------------------------- */
-
-.loadingDiv {
-
-}
-
-.loadingImg {
-
 }
 
 /* ------------------------------APP------------------------------------- */

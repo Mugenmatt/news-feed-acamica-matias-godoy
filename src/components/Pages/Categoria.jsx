@@ -12,23 +12,42 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
+    color: '#EF476F',
+    backgroundColor: '#42a7ff32',
   },
 }));
 
-const Deportes = (props) => {
-
+const Categoria = ({match}) => {
   const classes= useStyles()
 
   const dispatch = useDispatch()
 
   const searcher = useSelector((state) => state)
 
-  // const [news, setNews] = useState([])
   const [loading, setLoading] = useState(false)
 
+  const seccion = match.params.seccion;
+
+  function categoryChosed(){
+    switch(seccion) {
+        case 'politica':
+            return 'Política'
+        case 'internacionales':
+            return 'Internacionales'
+        case 'tecnologia':
+            return 'Tecnología'
+        case 'espectaculos':
+            return 'Espectáculos'
+        case 'deportes':
+            return 'Deportes'
+        default:
+            return
+    }
+  }
+
+
   const objNews = searcher.news.map( obj => {
-    if(obj.category === 'Deportes') {
+    if(obj.category === categoryChosed(match.params.seccion)) {
       return <Card 
           key={obj.news_id}
           title={obj.title}
@@ -37,7 +56,7 @@ const Deportes = (props) => {
           source_name={obj.source_name}
           url={obj.url}
       />
-    } else if(obj.category === null || obj.category !== 'Deportes') {
+    } else if(obj.category === null || obj.category !== categoryChosed(seccion)) {
       return 
     } else if(!obj.img_url) {
         return <Card 
@@ -51,7 +70,6 @@ const Deportes = (props) => {
         />
     }
   })
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -69,7 +87,7 @@ const Deportes = (props) => {
               <Backdrop className={classes.backdrop} open>
                 <CircularProgress color="inherit" />
               </Backdrop>
-              : maxNews(objNews,10)
+              : maxNews(objNews, 10)
           }
               
           </div>
@@ -78,4 +96,4 @@ const Deportes = (props) => {
     )
 }
 
-export default Deportes
+export default Categoria
