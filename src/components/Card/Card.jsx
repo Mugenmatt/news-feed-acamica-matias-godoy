@@ -1,4 +1,5 @@
 import React from 'react';
+import './Card.css'
 import letterQuantity from '../../utils/letterQuantity'
 
 export const Card = (props) => {

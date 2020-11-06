@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux'
 import * as actions from '../../actions/actions'
+import './Search.css'
 import { Redirect } from 'react-router-dom';
 import WordSearch from '../Pages/WordSearch';
 

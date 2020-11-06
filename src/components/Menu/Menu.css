@@ -1,0 +1,26 @@
+/* -----------------------------PAGINACIONES-------------------------------------- */
+
+.paginationDiv {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+  
+  }
+  
+  .menuOption {
+  
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--primary-color);
+  
+  }
+  
+  .activeOption {
+    color: var(--primary-color);
+    border-bottom: 0.17rem solid var(--primary-color);
+    font-weight: 900;
+  }
+  
+  

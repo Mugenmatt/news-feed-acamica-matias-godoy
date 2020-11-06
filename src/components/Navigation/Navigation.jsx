@@ -16,7 +16,7 @@ export const Navigation = () => {
   
             <Switch>
             
-              <Route className="option" exact path='/' component={Home} />
+              <Route exact path='/' component={Home} />
   
               {/* <Route path="/search/:word" component={WordSearch} /> */}
               <Route path="/search/:word" component={WordSearch} />
