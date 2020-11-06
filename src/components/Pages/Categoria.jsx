@@ -28,26 +28,33 @@ const Categoria = ({match}) => {
 
   const seccion = match.params.seccion;
 
-  function categoryChosed(){
+  function chosenCategory(){
     switch(seccion) {
-        case 'politica':
+        case '1':
             return 'Política'
-        case 'internacionales':
+        case '2':
             return 'Internacionales'
-        case 'tecnologia':
+        case '3':
             return 'Tecnología'
-        case 'espectaculos':
+        case '4':
             return 'Espectáculos'
-        case 'deportes':
+        case '5':
             return 'Deportes'
         default:
             return
     }
   }
 
+  useEffect(() => {
+    const apiNumber = seccion;
+    setTimeout(() => {
+      dispatch(actions.fetchNews(apiNumber))
+      setLoading(true)
+    }, 1000);
+  }, [seccion])
 
   const objNews = searcher.news.map( obj => {
-    if(obj.category === categoryChosed(match.params.seccion)) {
+    if(obj.category === chosenCategory(seccion))
       return <Card 
           key={obj.news_id}
           title={obj.title}
@@ -56,27 +63,9 @@ const Categoria = ({match}) => {
           source_name={obj.source_name}
           url={obj.url}
       />
-    } else if(obj.category === null || obj.category !== categoryChosed(seccion)) {
-      return 
-    } else if(!obj.img_url) {
-        return <Card 
-          key={obj.news_id}
-          title={obj.title}
-          description={obj.description}
-          img_url='https://www.intl-spectrum.com/articles/a1176/ArticleDefault.jpg?x=80x56'
-          category={obj.category}
-          source_name={obj.source_name}
-          url={obj.url}
-        />
-    }
+
   })
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(actions.fetchNews())
-      setLoading(true)
-    }, 1000);
-  }, [actions.fetchNews])
 
       return (
         <div>
@@ -88,7 +77,7 @@ const Categoria = ({match}) => {
                 <CircularProgress color="inherit" />
               </Backdrop>
               : maxNews(objNews, 10)
-          }
+            }
               
           </div>
             

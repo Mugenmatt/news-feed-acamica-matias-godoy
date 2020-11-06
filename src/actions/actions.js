@@ -14,28 +14,32 @@ export const fetchNewsSuccess = (news) => {
     }
 }
 
-export const fetchNews = () => {
+export const fetchNews = (apiNumber) => {
 
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const day = today.getDate()
 
+    const url = apiNumber === undefined
+    ? `https://api.canillitapp.com/latest/${year}-${month}-${day}`
+    : `https://api.canillitapp.com/news/category/${apiNumber}`;
+
+    console.log(url);
+
     return (dispatch) => {
-        // console.log(dispatch);
         dispatch(fetchNewsRequest());
-        fetch(`https://api.canillitapp.com/latest/${year}-${month}-${day}`)
+        fetch(url)
         .then(res => {
             return res.json();
         })
         .then(res => {
-            const news = res.slice(0, 500);
+            const news = res.slice(0, 200);
+            console.log(news);
             dispatch(fetchNewsSuccess(news))
         })
     }
 }
-
-// const API_SEARCH_URL = '/search/:palabra';
 
 export const fetchWord = (word) => {
     const url = `https://api.canillitapp.com/search/${word}`

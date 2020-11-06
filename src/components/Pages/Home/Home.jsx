@@ -21,10 +21,9 @@ const Home = (props) => {
 
   const dispatch = useDispatch()
 
-  // const [news, setNews] = useState([])
-  const [loading, setLoading] = useState(false)
-
   const searcher = useSelector((state) => state)
+
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
