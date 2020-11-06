@@ -8,7 +8,6 @@ import {maxNews} from '../../utils/maxNews'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -28,7 +27,7 @@ const WordSearch = ({match}) => {
 
   const [loading, setLoading] = useState(false)
 
-  const objNews = searcher.news.map( obj => {
+  const objNews = searcher.news.forEach( obj => {
     if(obj.title === match.params.word) {
       return <Card 
           key={obj.news_id}

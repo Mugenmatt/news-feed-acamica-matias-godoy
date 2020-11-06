@@ -25,8 +25,6 @@ export const fetchNews = (apiNumber) => {
     ? `https://api.canillitapp.com/latest/${year}-${month}-${day}`
     : `https://api.canillitapp.com/news/category/${apiNumber}`;
 
-    console.log(url);
-
     return (dispatch) => {
         dispatch(fetchNewsRequest());
         fetch(url)
@@ -35,7 +33,6 @@ export const fetchNews = (apiNumber) => {
         })
         .then(res => {
             const news = res.slice(0, 200);
-            console.log(news);
             dispatch(fetchNewsSuccess(news))
         })
     }
@@ -43,7 +40,6 @@ export const fetchNews = (apiNumber) => {
 
 export const fetchWord = (word) => {
     const url = `https://api.canillitapp.com/search/${word}`
-    // console.log('Antes del return');
     return (dispatch) => {
         dispatch(fetchNewsRequest());
         fetch(url)
@@ -51,7 +47,6 @@ export const fetchWord = (word) => {
             return res.json();
         })
         .then(res => {
-            // console.log('ESTOY EN LA RESPUESTA');
             const writtenWord = res;
             dispatch(fetchNewsSuccess(writtenWord))
         })

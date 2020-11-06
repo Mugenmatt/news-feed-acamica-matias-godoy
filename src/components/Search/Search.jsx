@@ -2,16 +2,11 @@ import React, {useState} from 'react';
 import { useDispatch } from 'react-redux'
 import * as actions from '../../actions/actions'
 import './Search.css'
-import { Redirect } from 'react-router-dom';
-import WordSearch from '../Pages/WordSearch';
-
 
 export const Search = (props) => {
 
   const dispatch = useDispatch()
   const [word, setWord] = useState('')
-  const [loading, setLoading] = useState(false)
-
   const handleWordSearch = e => {
     e.preventDefault()
     setWord(e.target.value);
